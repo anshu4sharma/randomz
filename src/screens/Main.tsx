@@ -1,4 +1,6 @@
 import Features from "../components/Features"
+import FeaturesToken from "../components/FeaturesToken"
+import Footer from "../components/Footer"
 import LatestCrypto from "../components/LatestCrypto"
 import MostTrusted from "../components/MostTrusted"
 import Navbar from "../components/Navbar"
@@ -18,6 +20,8 @@ const Main = () => {
             <Tokenomics />
             <LatestCrypto />
             <Roadmap />
+            <FeaturesToken />
+            <Footer />
         </div>
     )
 }
