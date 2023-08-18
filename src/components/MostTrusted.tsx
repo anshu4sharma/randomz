@@ -1,8 +1,8 @@
 
 const MostTrusted = () => {
     return (
-        <div className="bg_gradient grid gap-10 grid-cols-1 md:grid-cols-2 p-8  md:p-20 justify-center items-center">
-            <div className="flex gap-4  h-full w-full justify-end items-center order-2 md:order-none">
+        <div className="bg_gradient grid gap-10 grid-cols-1 sm:grid-cols-1  md:grid-cols-2 p-8 md:p-20 justify-center items-center">
+            <div className="flex gap-4 h-full w-full justify-end items-center order-2 md:order-none">
                 <div className="card p-14 md:min-h-[340px] md:max-w-xs w-full  flex flex-col text-white gap-4">
                     <img width={50} height={50} src="/assets/wallet.svg" alt="notfound" />
                     <h1 className="text-xl font-semibold leading-8">
@@ -14,13 +14,13 @@ const MostTrusted = () => {
                         icons with your contacts or friends. If you are legend.
                     </p>
                 </div>
-                <div className=" gap-4 md:flex hidden flex-col text-white text-center">
-                    <div className="card p-6 w-full h-[200px] md:max-w-[200px] justify-center items-center flex flex-col">
+                <div className=" gap-4 sm:flex hidden flex-col text-white text-center">
+                    <div className="card p-6 w-full min-h-[200px] md:max-w-[200px] justify-center items-center flex flex-col">
                         <img src="/assets/logo.svg" alt="notfound" />
                         <p className="text-base mt-4">Play games using
                             our native token and win</p>
                     </div>
-                    <div className="card p-6 w-full h-[200px] md:max-w-[200px] justify-center items-center flex-col flex">
+                    <div className="card p-6 w-full min-h-[200px] md:max-w-[200px] justify-center items-center flex-col flex">
                         <img src="/assets/logo.svg" alt="notfound" /><p className="text-base mt-4">Play games using
                             our native token and win</p>
                     </div>

@@ -1,5 +1,10 @@
+import Features from "../components/Features"
+import LatestCrypto from "../components/LatestCrypto"
 import MostTrusted from "../components/MostTrusted"
 import Navbar from "../components/Navbar"
+import Partners from "../components/Partners"
+import Roadmap from "../components/Roadmap"
+import Tokenomics from "../components/Tokenomics"
 import Hero from "./Hero"
 
 const Main = () => {
@@ -8,6 +13,11 @@ const Main = () => {
             <Navbar />
             <Hero />
             <MostTrusted />
+            <Features />
+            <Partners />
+            <Tokenomics />
+            <LatestCrypto />
+            <Roadmap />
         </div>
     )
 }

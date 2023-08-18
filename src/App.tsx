@@ -5,17 +5,18 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Hero from "./screens/Hero";
 import { Login } from "./screens/Login";
-import Navbar from "./components/Navbar";
 import Main from "./screens/Main";
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
 
 const Root = () => {
   return (
-    <Outlet />
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+    </QueryClientProvider>
   )
 }
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(

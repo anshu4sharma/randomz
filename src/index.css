@@ -15,7 +15,7 @@ body {
   height: 100vh;
   background-size: cover;
   background-position: center;
-  background-image: url("/assets/background.svg");
+  background-image: url("/assets/bghero.gif");
 }
 .bg-hero2 {
   background-color: #101418;
@@ -24,7 +24,12 @@ body {
   height: 100vh;
   background-size: cover;
   background-position: center;
-  background-image: url("/assets/background.svg");
+  background-image: url("/assets/bghero.gif");
+}
+
+.cointable {
+  border-radius: 38px;
+  background: linear-gradient(180deg, #172147 0%, rgba(29, 28, 29, 0.06) 100%);
 }
 @media screen and (max-width: 768px) {
   .bg-hero {
@@ -43,8 +48,22 @@ body {
     background-position: center;
     background-image: url("/assets/bghero.gif");
   }
+  .bg_gradient {
+    background: linear-gradient(
+      60deg,
+      rgba(167, 36, 104, 0.8) 0%,
+      rgba(14, 37, 157, 0.8) 100%
+    );
+  }
+  .cointable {
+    border-radius: 38px;
+    background: linear-gradient(
+      60deg,
+      #172147 0%,
+      rgba(29, 28, 29, 0.06) 100%
+    );
+  }
 }
-
 .bg_gradient {
   background: linear-gradient(180deg, #060606 0%, #070a16 100%);
 }
@@ -52,4 +71,24 @@ body {
 .card {
   border-radius: 24px;
   background: linear-gradient(180deg, #171e3a 0%, #3f1431 100%);
+}
+
+.features {
+  border-radius: 900px;
+  background: linear-gradient(
+    180deg,
+    rgba(167, 36, 104, 0.8) 0%,
+    rgba(14, 37, 157, 0.8) 100%
+  );
+  filter: blur(350px);
+  -webkit-filter: blur(350px);
+}
+.card1 {
+  background: linear-gradient(180deg, #171e3a 0%, #a72468 100%);
+}
+.card2 {
+  background: #172559;
+}
+.card3 {
+  background: linear-gradient(180deg, #7941ef 0%, rgba(19, 95, 137, 0.62) 100%);
 }
