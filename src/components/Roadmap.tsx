@@ -290,7 +290,7 @@ const Roadmap = () => {
             </div>
             {/* roadmap for desktop */}
 
-            <div className='flex bg_gradient md:p-10 p-10 justify-center items-center flex-col gap-4'>
+            <div className='md:flex bg_gradient hidden md:p-10 p-10 justify-center items-center flex-col gap-4'>
             <div className="flex flex-col text-white gap-4 text-left md:text-center my-6">
                 <h1 className='md:text-4xl text-2xl font-bold mt-4'>
                     Randomz  <span className='text-[#EE3C99] '>roadmap</span>
