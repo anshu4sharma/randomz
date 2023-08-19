@@ -20,6 +20,8 @@ const Features = () => {
             position: "absolute",
             zIndex: "0",
             borderRadius: "900px",
+            height: "100%",
+            width: "100%",
             background:
               "linear-gradient(180deg, rgba(167, 36, 104, 0.80) 0%, rgba(14, 37, 157, 0.80) 100%)",
             filter: "blur(250px)",

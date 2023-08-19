@@ -35,16 +35,16 @@ export default function WalletConnect({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-[#fff]  p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl salecard text-white  p-6 text-left align-middle shadow-xl transition-all">
                   {false? null : (
                     <Dialog.Title
                       as="h3"
-                      className="flex relative justify-center text-xl font-bold leading-6 text-gray-900"
+                      className="flex relative justify-center text-xl font-bold leading-6 "
                     >
                       Connect Your Wallet
                       <svg
                         onClick={closeModal}
-                        className="cursor-pointer absolute right-0"
+                        className="cursor-pointer  absolute right-0 fill-white"
                         height="12px"
                         viewBox="0 0 320.591 320.591"
                         width="12px"
@@ -62,32 +62,43 @@ export default function WalletConnect({
                   ) : (
                     <div className="my-2">
                       <RadioGroup className="grid grid-cols-1 w-full justify-around gap-4 p-4 flex-wrap text-white">
-                              <RadioGroup.Option  value="as">
+                              <RadioGroup.Option  value="as" className={"bg-white rounded-2xl"}>
                                 {() => (
                                   <div
-                                    className={`relative cursor-pointer flex shadow-md text-white  items-center flex-row justify-between p-4 rounded-xl `} 
+                                    className={` cursor-pointer flex text-black  items-center flex-row justify-between py-2 px-4 rounded-xl `} 
                                   >
-                                    <p className="text-xl text-center mt-2">
-                                      123 asd sad
+                                    <p className="md:text-xl text-sm font-bold text-center mt-2">
+                                    Wallet connect
                                     </p>
                                     <img
                                       alt="notfound"
-                                      src={"/assets/logo.svg"}
-                                      width={120}
+                                      src={"/assets/walletconnect.svg"}
+                                      width={100}
                                       height={80}
                                       className="cursor-pointer"
                                     />
-                                    <span className="text-xs font-mono absolute top-2 left-2">
-                                      {/* {key} */}
-                                      anshu sahrma
-                                    </span>
+                                  </div>
+                                )}
+                              </RadioGroup.Option>
+                              <RadioGroup.Option  value="as" className={"bg-white rounded-2xl"}>
+                                {() => (
+                                  <div
+                                  className={` cursor-pointer flex text-black  items-center flex-row justify-between py-2 px-4 pr-8 rounded-xl `} 
+                                  >
+                                    <p className="md:text-xl text-sm font-bold text-center mt-2">
+                                   Metamask
+                                    </p>
+                                    <img
+                                      alt="notfound"
+                                      src={"/assets/metamask.svg"}
+                                      width={60}
+                                      height={60}
+                                      className="cursor-pointer"
+                                    />
                                   </div>
                                 )}
                               </RadioGroup.Option>
                       </RadioGroup>
-                      <p className="text-base font-semibold text-black text-center my-4 px-5">
-                        Make transaction using these Wallets only.
-                      </p>
                     </div>
                   )}
                 </Dialog.Panel>

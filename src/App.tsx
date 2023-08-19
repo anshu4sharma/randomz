@@ -15,6 +15,7 @@ import AboutUs from "./screens/AboutUs";
 import Navbar from "./components/Navbar";
 import Team from "./screens/Team";
 import Sale from "./components/Sale";
+import { Signup } from "./screens/Signup";
 const queryClient = new QueryClient();
 
 const Root = () => {
@@ -43,6 +44,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />}>
       <Route index element={<Main />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/sale" element={<Sale />} />
       <Route element={<Layout />}>
         <Route path="/aboutus" element={<AboutUs />} />

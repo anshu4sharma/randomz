@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Login = () => {
   return (
     <div className="bg-[#070709] relative h-screen m-0 p-0 rounded-none">
@@ -14,9 +16,9 @@ export const Login = () => {
               className="my-2"
             />
           </a>
-          <div className="w-full bg-[#0A0D19] z-10 my-4 rounded-lg  md:mt-0 sm:max-w-2xl lg:max-w-3xl xl:p-0">
+          <div className="w-full md:bg-[#0A0D19] bg-[#111526]  z-10 my-4 rounded-lg  md:mt-0 sm:max-w-2xl lg:max-w-3xl xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-xl">
                 Sign in to your account
               </h1>
               <form className="space-y-4 md:space-y-6" action="#">
@@ -58,12 +60,12 @@ export const Login = () => {
                 </button>
                 <p className="text-sm font-light text-white text-center">
                   Don’t have an account yet?{" "}
-                  <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline"
+                  <Link
+                  to={"/signup"}
+                    className="font-medium text-[#C0317C] hover:underline"
                   >
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>

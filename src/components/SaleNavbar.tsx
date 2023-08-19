@@ -1,5 +1,14 @@
 import { Disclosure } from "@headlessui/react";
+import WalletConnect from "./WalletConnect";
+import { useState } from "react";
 export default function SaleNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  const openModal = () => {
+    setIsOpen(true);
+  };
   return (
     <>
       <nav className="md:p-6 w-full">
@@ -21,11 +30,11 @@ export default function SaleNavbar() {
                       asdas das dasdasdasdasd
                     </button>
                   ) : (
-                    <button className=" w-48 h-12 hidden md:flex items-center px-4 text-center rounded-md  bg-[#C0317C] text-white ">
+                    <button onClick={openModal} className=" w-48 h-12 hidden md:flex items-center px-4 text-center rounded-md  bg-[#C0317C] text-white ">
                       <span>Connect wallet</span>
                       <span className="ml-2">
                         <img
-                          src="/assets/walletconnect.svg"
+                          src="/assets/connectedwallet.svg"
                           width={14}
                           height={14}
                         />
@@ -103,11 +112,11 @@ export default function SaleNavbar() {
                 <div className="flex z-10 flex-col bg-black items-center p-4 justify-start order-2 w-full md:hidden">
                   <div className="flex flex-col gap-4 z-10">
                     {false ? (
-                      <button className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
+                      <button onClick={openModal} className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
                         {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}
                       </button>
                     ) : (
-                      <button className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
+                      <button onClick={openModal} className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
                         Connect wallet{" "}
                         <span className="ml-2">
                           <img src="/assets/walletconnect.svg" />
@@ -144,6 +153,7 @@ export default function SaleNavbar() {
           )}
         </Disclosure>
       </nav>
+      <WalletConnect closeModal={closeModal} isOpen={isOpen} />
     </>
   );
 }

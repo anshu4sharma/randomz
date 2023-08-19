@@ -18,7 +18,7 @@ const Hero = () => {
           <br />
           Community
         </h1>
-        <p className="md:text-xl text-base max-w-[230px] md:max-w-none">
+        <p className="md:text-xl mt-4 text-base max-w-[230px] md:max-w-none">
           Buy our decetralized token in private sale soon
         </p>
         <div className="flex gap-4 w-full mt-6 md:max-w-sm">
