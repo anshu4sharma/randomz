@@ -36,7 +36,7 @@ export default function WalletConnect({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl salecard text-white  p-6 text-left align-middle shadow-xl transition-all">
-                  {false? null : (
+                  {false ? null : (
                     <Dialog.Title
                       as="h3"
                       className="flex relative justify-center text-xl font-bold leading-6 "
@@ -62,42 +62,54 @@ export default function WalletConnect({
                   ) : (
                     <div className="my-2">
                       <RadioGroup className="grid grid-cols-1 w-full justify-around gap-4 p-4 flex-wrap text-white">
-                              <RadioGroup.Option  value="as" className={"bg-white rounded-2xl"}>
-                                {() => (
-                                  <div
-                                    className={` cursor-pointer flex text-black  items-center flex-row justify-between py-2 px-4 rounded-xl `} 
-                                  >
-                                    <p className="md:text-xl text-sm font-bold text-center mt-2">
-                                    Wallet connect
-                                    </p>
-                                    <img
-                                      alt="notfound"
-                                      src={"/assets/walletconnect.svg"}
-                                      width={100}
-                                      height={80}
-                                      className="cursor-pointer"
-                                    />
-                                  </div>
-                                )}
-                              </RadioGroup.Option>
-                              <RadioGroup.Option  value="as" className={"bg-white rounded-2xl"}>
-                                {() => (
-                                  <div
-                                  className={` cursor-pointer flex text-black  items-center flex-row justify-between py-2 px-4 pr-8 rounded-xl `} 
-                                  >
-                                    <p className="md:text-xl text-sm font-bold text-center mt-2">
-                                   Metamask
-                                    </p>
-                                    <img
-                                      alt="notfound"
-                                      src={"/assets/metamask.svg"}
-                                      width={60}
-                                      height={60}
-                                      className="cursor-pointer"
-                                    />
-                                  </div>
-                                )}
-                              </RadioGroup.Option>
+                        <RadioGroup.Option
+                          value="as"
+                          className={"bg-white rounded-2xl"}
+                        >
+                          {() => (
+                            <div
+                              onClick={() => {
+                                closeModal();
+                              }}
+                              className={` cursor-pointer flex text-black  items-center flex-row justify-between py-2 px-4 rounded-xl `}
+                            >
+                              <p className="md:text-xl text-sm font-bold text-center mt-2">
+                                Wallet connect
+                              </p>
+                              <img
+                                alt="notfound"
+                                src={"/assets/walletconnect.svg"}
+                                width={100}
+                                height={80}
+                                className="cursor-pointer"
+                              />
+                            </div>
+                          )}
+                        </RadioGroup.Option>
+                        <RadioGroup.Option
+                          value="as"
+                          className={"bg-white rounded-2xl"}
+                        >
+                          {() => (
+                            <div
+                              onClick={() => {
+                                closeModal();
+                              }}
+                              className={` cursor-pointer flex text-black  items-center flex-row justify-between py-2 px-4 pr-8 rounded-xl `}
+                            >
+                              <p className="md:text-xl text-sm font-bold text-center mt-2">
+                                Metamask
+                              </p>
+                              <img
+                                alt="notfound"
+                                src={"/assets/metamask.svg"}
+                                width={60}
+                                height={60}
+                                className="cursor-pointer"
+                              />
+                            </div>
+                          )}
+                        </RadioGroup.Option>
                       </RadioGroup>
                     </div>
                   )}

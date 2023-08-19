@@ -16,6 +16,8 @@ import Navbar from "./components/Navbar";
 import Team from "./screens/Team";
 import Sale from "./components/Sale";
 import { Signup } from "./screens/Signup";
+import { Toaster } from "react-hot-toast";
+import { ProtectedAuthPages, ProtectedPages } from "./components/ProtectRoutes";
 const queryClient = new QueryClient();
 
 const Root = () => {
@@ -27,7 +29,8 @@ const Root = () => {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+        <Toaster />
+        <Outlet />
     </QueryClientProvider>
   );
 };
@@ -43,9 +46,13 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index element={<Main />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/sale" element={<Sale />} />
+      <Route element={<ProtectedAuthPages />}>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Route>
+      <Route element={<ProtectedPages />}>
+        <Route path="/sale" element={<Sale />} />
+      </Route>
       <Route element={<Layout />}>
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/team" element={<Team />} />

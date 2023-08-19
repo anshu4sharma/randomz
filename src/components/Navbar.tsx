@@ -41,6 +41,7 @@ export default function Navbar() {
       document.body.classList.remove("overflow-hidden");
     };
   }, [isPanelOpen]);
+ 
   return (
     <>
       <nav className="md:p-6 md:bg-[#090C18]">
@@ -78,7 +79,7 @@ export default function Navbar() {
                   >
                     <span>Connect wallet</span>
                     <span className="ml-2">
-                      <img src="/assets/walletconnect.svg" width={14} height={14} />
+                      <img src="/assets/connectedwallet.svg" width={14} height={14} />
                     </span>
                   </button>
                 )}

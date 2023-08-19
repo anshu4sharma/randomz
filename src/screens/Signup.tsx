@@ -1,10 +1,69 @@
-import { useState } from "react";
 import OtpInput from "react-otp-input";
+import { useFormik } from "formik";
+import axios from "axios";
 import { Link } from "react-router-dom";
-
+import toast from "react-hot-toast";
 export const Signup = () => {
-  const [otp, setOtp] = useState("");
-
+  const { values, handleChange, handleSubmit, handleBlur, setFieldValue } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+        otp: "",
+        referalId: "",
+      },
+      onSubmit: (values) => {
+        console.log(values);
+        handleSignup();
+      },
+    });
+    const sendEmail = async () => {
+      try {
+        const { data, status } = await axios.post(
+          `${process.env.VITE_SERVER_URL}/users/sendemail`,
+          {
+            email: values.email,
+          }
+        );
+        console.log(data);
+        if (status === 200) {
+          return toast.success("Email sent successfully");
+        }
+      } catch (error) {
+        console.log(error);
+        
+        toast.error(
+          (error as any).response.data.message || (error as any).message
+        );
+      }
+    };
+    const handleSignup = async () => {
+      if (!values.email || !values.password || !values.otp  || 
+        !values.referalId){
+        return toast.error("Please fill all the fields");
+      }
+      try {
+        const { data, status } = await axios.post(
+          `${process.env.VITE_SERVER_URL}/users`,
+          {
+            email: values.email,
+            password: values.password,
+            otp: values.otp,
+            referalId: values.referalId,
+          }
+        );
+        console.log(data);
+        if (status === 200) {
+          window.location.href = "/login";
+          return toast.success("Account created successfull");
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(
+          (error as any).response.data.message || (error as any).message
+        );
+      } 
+      }
   return (
     <div className="bg-[#070709] relative rounded-none">
       <section className="z-10">
@@ -25,7 +84,7 @@ export const Signup = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-xl">
                 Sign up to create your account{" "}
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 <div className="flex gap-4 w-full items-start justify-center flex-col">
                   <div className="flex flex-col w-full ">
                     <div className="flex justify-between w-full flex-col md:flex-row">
@@ -33,7 +92,7 @@ export const Signup = () => {
                         htmlFor="email"
                         className="block mb-2 text-sm font-medium text-white"
                       >
-                        E-Mail 
+                        E-Mail
                       </label>
                       <div className="text-white flex gap-2 items-center">
                         <svg
@@ -48,25 +107,33 @@ export const Signup = () => {
                             fill="#EE3C99"
                           />
                         </svg>{" "}
-                        <p className="text-sm my-2">OTP Will be sent to your email</p>
+                        <p className="text-sm my-2">
+                          OTP Will be sent to your email
+                        </p>
                       </div>
                     </div>
-                   <div className="flex gap-4 flex-col md:flex-row">
-                   <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                      placeholder="name@company.com"
-                    /> <button
-                    type="submit"
-                    className="text-white max-w-[160px] h-full  bg-[#C0317C] hover:bg-[#d35898] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 w-full"
-                  >
-                    Verify email
-                  </button>
-                   </div>
+                    <div className="flex gap-4 flex-col md:flex-row">
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        id="email"
+                        onBlur={handleBlur}
+                        value={values.email}
+                        onChange={handleChange}
+                        className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        placeholder="name@company.com"
+                      />{" "}
+                      <button
+                        onClick={sendEmail}
+                        disabled={!values.email}
+                        type="button"
+                        className="text-white disabled:cursor-not-allowed max-w-[160px] h-full  bg-[#C0317C] hover:bg-[#d35898] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 w-full"
+                      >
+                        Verify email
+                      </button>
+                    </div>
                   </div>
-                 
                 </div>
                 <div>
                   <label
@@ -76,8 +143,12 @@ export const Signup = () => {
                     Password
                   </label>
                   <input
+                    onChange={handleChange}
+                    value={values.password}
+                    onBlur={handleBlur}
                     type="password"
                     name="password"
+                    required
                     id="password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
@@ -91,18 +162,21 @@ export const Signup = () => {
                     Enter Otp
                   </label>
                   <OtpInput
-                    value={otp}
-                    onChange={setOtp}
+                    value={values.otp}
+                    onChange={(value) => {
+                      setFieldValue("otp", value);
+                    }}
+                    // onChange={setOtp}
                     inputStyle={{
                       width: "2.5rem",
                       height: "2.5rem",
                       fontSize: "1.5rem",
                       color: "#000",
                       borderRadius: 4,
-                      display:"grid",
-                      gridTemplateColumns:"repeat(4,1fr)",
+                      display: "grid",
+                      gridTemplateColumns: "repeat(4,1fr)",
                     }}
-                    placeholder="-"
+                    placeholder="----"
                     numInputs={4}
                     renderSeparator={<span className="m-3">-</span>}
                     renderInput={(props) => <input {...props} />}
@@ -110,15 +184,19 @@ export const Signup = () => {
                 </div>
                 <div>
                   <label
-                    htmlFor="referalcode"
+                    htmlFor="referalId"
                     className="block mb-2 text-sm font-medium text-white"
                   >
                     Enter referral code here
                   </label>
                   <input
                     type="text"
-                    name="referalcode"
-                    id="referalcode"
+                    name="referalId"
+                    onChange={handleChange}
+                    value={values.referalId}
+                    onBlur={handleBlur}
+                    id="referalId"
+                    required
                     className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   />
                 </div>

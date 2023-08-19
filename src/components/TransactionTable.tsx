@@ -25,8 +25,9 @@ const TransactionTable = () => {
           {[...Array(5)].map((_, i, arr) => {
             return (
               <tr
+                key={i}
                 className={` ${
-                  i !== arr.length -1 ? "border-b border-[#3D3C3C]" : " "
+                  i !== arr.length - 1 ? "border-b border-[#3D3C3C]" : " "
                 }`}
               >
                 <th

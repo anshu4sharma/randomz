@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react";
-import WalletConnect from "./WalletConnect";
-import { useState } from "react";
+import WalletConnects from "./WalletConnect";
+import { Link } from "react-router-dom";
+import { useState } from 'react';
 export default function SaleNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
@@ -9,6 +10,10 @@ export default function SaleNavbar() {
   const openModal = () => {
     setIsOpen(true);
   };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
   return (
     <>
       <nav className="md:p-6 w-full">
@@ -16,21 +21,26 @@ export default function SaleNavbar() {
           {({ open }) => (
             <>
               <div className="flex justify-between z-10">
-                <img
-                  src="/assets/randomz.png"
-                  width={120}
-                  height={80}
-                  alt={"notfound"}
-                  className="md:flex hidden"
-                />
+                <Link to={"/"}>
+                  <img
+                    src="/assets/randomz.png"
+                    width={120}
+                    height={80}
+                    alt={"notfound"}
+                    className="md:flex hidden"
+                  />
+                </Link>
                 <div className="flex gap-4 z-10">
                   {false ? (
-                    <button className="leading-3 hidden md:flex items-center mt-4 py-3 px-4 text-center rounded-md border-[#14E8B6] bg-[#C0317C] border text-white font-bold ">
+                    <button className="w-42 h-full hidden md:flex items-center p-2 text-center rounded-md  bg-[#C0317C] text-white ">
                       {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}
                       asdas das dasdasdasdasd
                     </button>
                   ) : (
-                    <button onClick={openModal} className=" w-48 h-12 hidden md:flex items-center px-4 text-center rounded-md  bg-[#C0317C] text-white ">
+                    <button
+                      onClick={openModal}
+                      className="w-42 h-full hidden md:flex items-center p-2 text-center rounded-md  bg-[#C0317C] text-white "
+                    >
                       <span>Connect wallet</span>
                       <span className="ml-2">
                         <img
@@ -41,13 +51,15 @@ export default function SaleNavbar() {
                       </span>
                     </button>
                   )}
-                  {false ? (
-                    <button className="leading-3 hidden md:flex items-center mt-4 py-3 px-4 text-center rounded-md border-[#14E8B6] bg-[#C0317C] border text-white font-bold ">
-                      {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}
-                      asdas das dasdasdasdasd
+                  {!localStorage.getItem("token") ? (
+                    <button className=" w-42 h-12 justify-center  hidden md:flex items-center px-4 text-center rounded-md  bg-[#1C2129] text-white ">
+                      Login
                     </button>
                   ) : (
-                    <button className=" w-42 h-12 justify-center  hidden md:flex items-center px-4 text-center rounded-md  bg-[#1C2129] text-white ">
+                    <button
+                      onClick={handleLogout}
+                      className=" w-42 h-12 justify-center  hidden md:flex items-center px-4 text-center rounded-md  bg-[#1C2129] text-white "
+                    >
                       Logout{" "}
                       <svg
                         className="ml-4"
@@ -70,13 +82,15 @@ export default function SaleNavbar() {
                     open ? " bg-black " : " bg-transparent "
                   } `}
                 >
-                  <img
-                    src="/assets/randomz.png"
-                    width={120}
-                    height={80}
-                    alt={"notfound"}
-                    className="md:hidden"
-                  />
+                  <Link to={"/"}>
+                    <img
+                      src="/assets/randomz.png"
+                      width={120}
+                      height={80}
+                      alt={"notfound"}
+                      className="md:hidden"
+                    />
+                  </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
                     className="px-2 py-1 ml-auto bg-transparent rounded-md md:hidden text-white focus:outline-none"
@@ -111,25 +125,34 @@ export default function SaleNavbar() {
               >
                 <div className="flex z-10 flex-col bg-black items-center p-4 justify-start order-2 w-full md:hidden">
                   <div className="flex flex-col gap-4 z-10">
-                    {false ? (
-                      <button onClick={openModal} className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
+                    {true ? (
+                      <button
+                        onClick={openModal}
+                        className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold "
+                      >
                         {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}
+                        asdas das dasd
                       </button>
                     ) : (
-                      <button onClick={openModal} className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
+                      <button
+                        onClick={openModal}
+                        className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold "
+                      >
                         Connect wallet{" "}
                         <span className="ml-2">
-                          <img src="/assets/walletconnect.svg" />
+                          <img src="/assets/connectedwallet.svg" />
                         </span>
                       </button>
                     )}
-                    {false ? (
-                      <button className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md border-[#14E8B6] bg-[#C0317C] border text-white font-bold ">
-                        {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}
-                        asdas das dasdasdasdasd
+                    {!localStorage.getItem("token") ? (
+                      <button className="flex w-42 h-full p-2 justify-center  items-center px-4 text-center rounded-md  bg-[#1C2129] text-white ">
+                        Login
                       </button>
                     ) : (
-                      <button className="flex w-42 h-12 justify-center  items-center px-4 text-center rounded-md  bg-[#1C2129] text-white ">
+                      <button
+                        onClick={handleLogout}
+                        className="flex w-42 h-full justify-center  items-center p-2 text-center rounded-md  bg-[#1C2129] text-white "
+                      >
                         Logout{" "}
                         <svg
                           className="ml-4"
@@ -153,7 +176,7 @@ export default function SaleNavbar() {
           )}
         </Disclosure>
       </nav>
-      <WalletConnect closeModal={closeModal} isOpen={isOpen} />
+      <WalletConnects closeModal={closeModal} isOpen={isOpen} />
     </>
   );
 }

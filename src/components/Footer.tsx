@@ -73,12 +73,12 @@ const Footer = () => {
               <ul className="text-gray-500 font-medium flex gap-4">
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
-                    <img src="/assets/twitter.svg" width={40} alt="notfound" />
+                    <img src="/assets/twitter.svg" width={40} height={40} alt="notfound" />
                   </a>
                 </li>
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
-                    <img src="/assets/facebook.svg" width={40} alt="notfound" />
+                    <img src="/assets/facebook.svg" width={35} height={40} alt="notfound" />
                   </a>
                 </li>
               </ul>
