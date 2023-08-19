@@ -95,7 +95,7 @@ const Footer = () => {
             />
             <button className="bg-[#EE3C99] md:w-24 w-full rounded-md p-2">Join</button>
           </div>
-          <p className="text-[#858181]">dappsoneplace. All Rights Reserved.2023</p>
+          <p className="text-[#858181] md:text-left text-center mb-4">dappsoneplace. All Rights Reserved.2023</p>
           </div>
         </div>
       </footer>

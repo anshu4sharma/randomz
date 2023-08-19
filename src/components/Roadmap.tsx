@@ -289,7 +289,6 @@ const Roadmap = () => {
                 </section>
             </div>
             {/* roadmap for desktop */}
-
             <div className='md:flex bg_gradient hidden md:p-10 p-10 justify-center items-center flex-col gap-4'>
             <div className="flex flex-col text-white gap-4 text-left md:text-center my-6">
                 <h1 className='md:text-4xl text-2xl font-bold mt-4'>
@@ -298,8 +297,8 @@ const Roadmap = () => {
                 <p className='text-base font-light'>
                 Roadmap is an estimated and planned structure of this project.
                 </p>
-                <img src="/assets/roadmap.svg" width={700} height={600} alt="tokenomics" 
-                className="mt-14"
+                <img src="/assets/roadmap.svg"  alt="tokenomics" 
+                className="mt-14 w-full"
                 />
             </div>
         </div>

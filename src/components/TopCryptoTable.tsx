@@ -119,11 +119,11 @@ const TopCrypto = () => {
             <div className="p-4 mt-6 md:flex items-center hidden cointable shadow-sm shadow-[#172147]">
                 <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
                     <div className="w-full font-semibold text-sm text-left text-gray-500 ">
-                        <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-4">
-                            <p className="p-6">Name</p>
-                            <p className="p-6">Last price(USD) </p>
-                            <p className="p-6">24 Change</p>
-                            <p className="p-6 ">Volume</p>
+                        <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white  grid grid-cols-4">
+                            <p className="px-6">Name</p>
+                            <p className="px-6">Last price(USD) </p>
+                            <p className="px-6">24 Change</p>
+                            <p className="px-6 ">Volume</p>
                         </div>
                         <div className="">
                             {isLoading ? (
