@@ -19,47 +19,6 @@ const Sale = () => {
       setLeftTokens(total);
     })();
   }, []);
-  const fetchRate = async (
-    coinFrom: string,
-    coinTo: string,
-    network: string = "ETH"
-  ) => {
-    const { data } = await axios.get(
-      `https://exolix.com/api/v2/rate?coinFrom=${coinFrom}&coinTo=${coinTo}&networkTo=${network}&amount=11111&rateType=fixed`
-    );
-    return data;
-  };
-  const parallelRequest = async () => {
-    try {
-      const coinPromises = [
-        fetchRate("BTC", "USDT"),
-        fetchRate("ETH", "USDT"),
-        fetchRate("BNB", "USDT"),
-        fetchRate("XRP", "USDT"),
-        fetchRate("ADA", "USDT"),
-        fetchRate("DOGE", "USDT"),
-        fetchRate("LTC", "USDT"),
-      ];
-
-      const coins = await Promise.allSettled(coinPromises);
-
-      const updatedCoins = coins.map((result, index) => {
-        if (result.status === "fulfilled") {
-          // @ts-ignore
-          const { image, name, id } = Coinlist[index];
-          return { ...result.value, image, name, id };
-        } else {
-          // Handle rejected promise (optional)
-          console.log(`Promise at index ${index} rejected: ${result.reason}`);
-          return null; // or any other fallback value
-        }
-      });
-
-      return updatedCoins.filter((coin) => coin !== null) as any;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const [showTransactionModal, setShowTransactionModal] = useState(false);
   const closeModal = () => {
     setShowTransactionModal(false);
@@ -72,7 +31,7 @@ const Sale = () => {
       <SaleNavbar />
       <Presale />
       <div className="z-10 flex  items-end gap-4 flex-col md:flex-row w-full max-w-3xl justify-center md:justify-around">
-         <div className=" flex flex-col gap-4 w-full">
+         <div className=" flex flex-col gap-3 md:p-4 w-full">
           <div className="flex w-full justify-between text-sm items-center text-left rounded-lg shadow-orange-50 bg-opacity-20 backdrop-blur-sm  salecard p-4  gap-2">
             <p className="text-white  text-left  font-semibold break-all">
               Your allocation
@@ -146,7 +105,7 @@ const Sale = () => {
           </div>
         </div>
         <div className="flex flex-col items-center w-full gap-4 justify-center">
-          <div className="flex w-full flex-col md:flex-row justify-between  text-sm items-center text-left rounded-lg shadow-orange-50 bg-opacity-20 backdrop-blur-sm  salecard  gap-2">
+          <div className="flex w-full flex-col md:flex-row justify-between  text-sm items-center text-left rounded-lg shadow-orange-50 bg-opacity-20 backdrop-blur-sm  salecard  gap-2 ">
             <p className="text-white text-sm text-left p-4   font-normal ">
               https://randomz.com/E620001
             </p>
@@ -154,7 +113,7 @@ const Sale = () => {
               Copy Link
             </button>
           </div>{" "}
-          <div className="flex w-full flex-col rounded-lg shadow-orange-50  items-start text-center  bg-opacity-20 backdrop-blur-sm salecard p-6  md:p-8 gap-2">
+          <div className="flex w-full  flex-col rounded-lg shadow-orange-50  items-start text-center  bg-opacity-20 backdrop-blur-sm salecard p-6 m-5  md:p-8 gap-2">
             <h1 className="text-xl font-black tracking-wider my-2 text-[#EE3C99]">
               Buy RDZ tokens
             </h1>
@@ -171,7 +130,7 @@ const Sale = () => {
                   disabled
                   // value={lovelaceToSend * 10}
                   placeholder="You will get"
-                  className="bg-[#172042] outline-none placeholder:text-sm placeholder:text-white no-spinners placeholder-shown:text-white text-white p-3 w-full"
+                  className="bg-[#172042] outline-none placeholder:text-sm placeholder:text-white no-spinners placeholder-shown:text-white text-white p-3 md:p-4 w-full"
                 />
                 <div className="flex bg-[#172042] px-4">
                   <img
@@ -194,13 +153,10 @@ const Sale = () => {
                   name="BNB"
                   min={1}
                   // value={lovelaceToSend}
-                  onChange={(e) => {
-                    // handleInputChange(e);
-                  }}
                   autoComplete="off"
                   placeholder="Enter amount in BNB here"
                   className={
-                    "bg-[#172042] outline-none placeholder:text-sm no-spinners placeholder:text-white placeholder-shown:text-white text-white p-3 w-full "
+                    "bg-[#172042] outline-none placeholder:text-sm no-spinners placeholder:text-white placeholder-shown:text-white text-white p-3 md:p-4 w-full "
                   }
                 />
 
@@ -241,7 +197,7 @@ const Sale = () => {
                   autoComplete="off"
                   // value={lovelaceToSend * 10}
                   placeholder="You will get"
-                  className="bg-[#172042] outline-none placeholder:text-sm placeholder:text-white no-spinners placeholder-shown:text-white text-white p-3 w-full"
+                  className="bg-[#172042] outline-none placeholder:text-sm placeholder:text-white no-spinners placeholder-shown:text-white text-white p-3 md:p-4 w-full"
                 />
                 <div className="flex bg-[#172042] px-4">
                   <img
@@ -263,13 +219,10 @@ const Sale = () => {
                   type="number"
                   name="BNB"
                   // value={lovelaceToSend}
-                  onChange={(e) => {
-                    // handleInputChange(e);
-                  }}
                   autoComplete="off"
                   placeholder="Enter amount in BNB here"
                   className={
-                    "bg-[#172042] outline-none  no-spinners placeholder:text-sm placeholder:text-white placeholder-shown:text-white text-white p-3 w-full "
+                    "bg-[#172042] outline-none  no-spinners placeholder:text-sm placeholder:text-white placeholder-shown:text-white text-white p-3 md:p-4 w-full "
                   }
                 />
                 <div className="flex bg-[#172042] px-4 items-center">
@@ -286,11 +239,6 @@ const Sale = () => {
                 </div>
               </div>
             )}
-            <span>
-              <p className="text-white text-sm font-medium mt-2">
-                Minimum purchase amount is 1000 BNB and maximum is 5000 BNB.
-              </p>
-            </span>
             {false ? (
               <button
                 type="button" 
@@ -298,7 +246,7 @@ const Sale = () => {
                   console.log("open wallet connect");
                   openWalletConnect();
                 }}
-                className="bg-[#EE3C99] disabled:cursor-not-allowed flex items-center gap-4 justify-center my-4 buy p-2.5 w-full text-white rounded-md text-sm "
+                className="bg-[#EE3C99] disabled:cursor-not-allowed flex items-center gap-4 justify-center my-4 buy p-3 md:p-4 w-full text-white rounded-md text-sm "
               >
                 Click to purchase
                 <svg
@@ -322,7 +270,7 @@ const Sale = () => {
                   openWalletConnect();
                 }}
                 placeholder="Timer"
-                className="salecard disabled:cursor-not-allowed flex items-center gap-4 justify-center my-4 buy p-2.5 w-full text-white rounded-md text-sm salecard"
+                className="bg-[#EE3C99] disabled:cursor-not-allowed flex items-center gap-4 justify-center my-4 buy p-3 md:p-4 w-full text-white rounded-md text-sm "
               >
                 Connect Wallet
               </button>
@@ -330,15 +278,15 @@ const Sale = () => {
           </div>
         </div>
       </div>  <div
-          className="absolute inset-0"
+          className="absolute inset-0 md:translate-x-full"
           style={{
             content: "",
             position: "absolute",
             zIndex: "0",
             top: 0,
             right: 0,
-            width: "40%",
-            height: "40%",
+            width: "50%",
+            height: "100%",
             borderRadius: "900px",
             background:
               "linear-gradient(180deg, rgba(167, 36, 104, 0.80) 0%, rgba(14, 37, 157, 0.80) 100%)",

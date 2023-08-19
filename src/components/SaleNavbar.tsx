@@ -6,7 +6,7 @@ export default function SaleNavbar() {
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="flex justify-between ">
+              <div className="flex justify-between z-10">
                 <img
                   src="/assets/randomz.png"
                   width={120}
@@ -14,7 +14,7 @@ export default function SaleNavbar() {
                   alt={"notfound"}
                   className="md:flex hidden"
                 />
-                <div className="flex gap-4">
+                <div className="flex gap-4 z-10">
                   {false ? (
                     <button className="leading-3 hidden md:flex items-center mt-4 py-3 px-4 text-center rounded-md border-[#14E8B6] bg-[#C0317C] border text-white font-bold ">
                       {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}
@@ -58,7 +58,7 @@ export default function SaleNavbar() {
                 </div>
                 <div
                   className={`flex md:hidden p-4 h-full items-center justify-between w-full md:w-auto  ${
-                    open ? " bg-[#090C18] " : " bg-transparent "
+                    open ? " bg-black " : " bg-transparent "
                   } `}
                 >
                   <img
@@ -100,8 +100,8 @@ export default function SaleNavbar() {
                   zIndex: 9999,
                 }}
               >
-                <div className="flex flex-col bg-[#090C18] items-center p-4 justify-start order-2 w-full md:hidden">
-                  <div className="flex flex-col gap-4">
+                <div className="flex z-10 flex-col bg-black items-center p-4 justify-start order-2 w-full md:hidden">
+                  <div className="flex flex-col gap-4 z-10">
                     {false ? (
                       <button className="leading-3 flex items-center mt-4 py-3 px-4 text-center rounded-md  bg-[#C0317C]  text-white font-bold ">
                         {/* {changeAddress?.slice(0, 6)}...{changeAddress?.slice(-4)} */}

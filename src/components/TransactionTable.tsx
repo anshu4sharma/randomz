@@ -1,8 +1,8 @@
 const TransactionTable = () => {
   return (
-    <div className="z-10 relative overflow-x-auto w-full max-w-3xl  p-4 cointable my-10 shadow-sm shadow-[#172147]">
+    <div className="z-10 relative overflow-x-auto w-full max-w-3xl  p-4 transactiontable my-10 shadow-sm shadow-[#172147]">
       <table className="w-full text-sm text-left text-white ">
-        <thead className="text-xs uppercase">
+        <thead className="text-xs">
           <tr>
             <th scope="col" className="px-6 py-3">
               Sr.no

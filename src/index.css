@@ -31,6 +31,10 @@ body {
   border-radius: 38px;
   background: linear-gradient(180deg, #172147 0%, rgba(29, 28, 29, 0.06) 100%);
 }
+.transactiontable{
+  border-radius: 15px;
+background: linear-gradient(180deg, rgba(23, 32, 65, 0.50) 0%, rgba(20, 26, 46, 0.50) 100%);
+}
 @media screen and (max-width: 768px) {
   .bg-hero {
     background-repeat: no-repeat;
@@ -57,11 +61,7 @@ body {
   }
   .cointable {
     border-radius: 38px;
-    background: linear-gradient(
-      60deg,
-      #172147 0%,
-      rgba(29, 28, 29, 0.06) 100%
-    );
+    background: linear-gradient(60deg, #172147 0%, rgba(29, 28, 29, 0.06) 100%);
   }
 }
 .bg_gradient {
@@ -72,11 +72,11 @@ body {
   border-radius: 24px;
   background: linear-gradient(180deg, #171e3a 0%, #3f1431 100%);
 }
-.login{
+.login {
   background: linear-gradient(180deg, #171e3a 0%, #070709 100%);
 }
-.salecard{
-  background: linear-gradient(180deg, #172043 0%, #11141F 100%);
+.salecard {
+  background: linear-gradient(180deg, #172043 0%, #11141f 100%);
 }
 .features {
   border-radius: 900px;
@@ -98,4 +98,22 @@ body {
   background: linear-gradient(180deg, #7941ef 0%, rgba(19, 95, 137, 0.62) 100%);
 }
 
+.primary-gradient {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  --tw-gradient-from: #00a3ff var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 163 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #4eff4a var(--tw-gradient-to-position);
+}
 
+  /* Hide the spinner arrows for number inputs */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* For Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }

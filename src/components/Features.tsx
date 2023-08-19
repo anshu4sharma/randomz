@@ -51,7 +51,7 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div data-aos="fade-up-left" className="z-10 flex flex-col card3 text-white justify-center items-center max-w-xs h-full md:min-h-[400px] md:mt-[60px] py-10 md:py-0">
+        <div data-aos="fade-up-left" className="z-10 flex flex-col card3 text-white justify-center items-center max-w-xs h-full md:min-h-[400px] py-10 md:py-0">
           <img src="/assets/lock.svg" width={80} height={80} />
           <div className="flex p-8 flex-col">
             <p className="text-xl font-semibold text-center">

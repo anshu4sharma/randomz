@@ -4,7 +4,7 @@ const Footer = () => {
       <footer className="bg-[#080808] md:p-10">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="grid grid-cols-1 gap-8 md:px-4 md:py-6 lg:py-8 p-10 md:grid-cols-4">
-            <img src="/assets/randomz.png" alt="logo" className="md:hidden" />
+            <img src="/assets/randomz.png" alt="logo" className="md:hidden" width={140} />
             <div>
               <h2 className="mb-6 text-lg md:text-2xl font-bold text-white  ">
                 Trading

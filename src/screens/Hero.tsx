@@ -11,7 +11,7 @@ const Hero = () => {
           <br />
           By Community
         </h1>
-        <h1 className="md:text-6xl md:inline hidden md:leading-[100px] leading-[60px] text-3xl tracking-wide font-semibold md:font-bold">
+        <h1 className="md:text-6xl md:inline hidden md:leading-[80px] leading-[60px] text-3xl tracking-wide font-semibold md:font-bold">
           Decentralized Token
           <br />
           Governed By The

@@ -28,17 +28,17 @@ const Presale = () => {
     const minutes = Math.floor((remainingTime % (60 * 60)) / 60);
     const seconds = remainingTime % 60;
     return (
-      <div className="flex gap-4 justify-center items-center">
-        <div className="flex bg-[#14171D] bg-opacity-25 text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
+      <div className="flex gap-4 justify-center items-center z-10">
+        <div className="flex bg-[#14171D]  text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
           <p>{days}d</p>
         </div>
-        <div className="flex bg-[#14171D] bg-opacity-25 text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
+        <div className="flex bg-[#14171D]  text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
           <p>{hours}h</p>
         </div>
-        <div className="flex bg-[#14171D] bg-opacity-25 text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
+        <div className="flex bg-[#14171D]  text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
           <p>{minutes}m</p>
         </div>
-        <div className="flex bg-[#14171D] bg-opacity-25 text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
+        <div className="flex bg-[#14171D]  text-white border border-[#EE3C99] rounded-md p-3 md:p-4 font-bold">
           <p>{seconds}s</p>
         </div>
       </div>
@@ -48,7 +48,7 @@ const Presale = () => {
     <div className="z-10 salecard bg-opacity-20 backdrop-blur-sm max-w-3xl w-full grid p-6 gap-4  grid-cols-1 justify-center items-center md:grid-cols-2 rounded-md">
       <div className="flex flex-col gap-2 ">
         <p className="text-[#EE3C99] font-semibold text-xl">
-          CGI Tokens presale ends in : {Math.floor(remainingTime / (24 * 60 * 60))} days
+        RDZ Tokens presale starts in : {Math.floor(remainingTime / (24 * 60 * 60))} days
         </p>
         <p className="text-white text-sm">
           Ensure you are whitelisted to participate
