@@ -72,7 +72,12 @@ body {
   border-radius: 24px;
   background: linear-gradient(180deg, #171e3a 0%, #3f1431 100%);
 }
-
+.login{
+  background: linear-gradient(180deg, #171e3a 0%, #070709 100%);
+}
+.salecard{
+  background: linear-gradient(180deg, #172043 0%, #11141F 100%);
+}
 .features {
   border-radius: 900px;
   background: linear-gradient(
@@ -92,3 +97,5 @@ body {
 .card3 {
   background: linear-gradient(180deg, #7941ef 0%, rgba(19, 95, 137, 0.62) 100%);
 }
+
+

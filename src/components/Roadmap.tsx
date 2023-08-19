@@ -298,7 +298,7 @@ const Roadmap = () => {
                 Roadmap is an estimated and planned structure of this project.
                 </p>
                 <img src="/assets/roadmap.svg"  alt="tokenomics" 
-                className="mt-14 w-full"
+                className="mt-14 w-full"   loading="lazy"
                 />
             </div>
         </div>

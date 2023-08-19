@@ -14,15 +14,15 @@ const menu = [
   },
   {
     label: "Team",
-    href: "/aboutus",
+    href: "/team",
   },
   {
     label: "Whitepaper",
-    href: "/faq",
+    href: "/",
   },
   {
     label: "Contact us",
-    href: "/contact",
+    href: "/contactus",
   },
 ];
 export default function Navbar() {
@@ -49,9 +49,9 @@ export default function Navbar() {
             <>
               <div className="flex flex-wrap  justify-between md:gap-10 md:flex-nowrap">
                 <img
-                  src="/assets/logo.svg"
-                  width={60}
-                  height={60}
+                  src="/assets/randomz.png"
+                  width={120}
+                  height={80}
                   alt={"notfound"}
                   className="md:flex hidden"
                 />
@@ -84,9 +84,9 @@ export default function Navbar() {
                 )}
                 <div className={`flex md:hidden p-4 h-full items-center justify-between w-full md:w-auto  ${open ? " bg-[#090C18] " : " bg-transparent "} `}>
                   <img
-                    src="/assets/logo.svg"
-                    width={40}
-                    height={40}
+                    src="/assets/randomz.png"
+                    width={120}
+                    height={80}
                     alt={"notfound"}
                     className="md:hidden"
                   />
@@ -155,13 +155,6 @@ export default function Navbar() {
           )}
         </Disclosure>
       </nav>
-      {/* <WalletConnect
-        wallets={wallets}
-        handleWalletSelect={handleWalletSelect}
-        whichWalletSelected={whichWalletSelected}
-        closeModal={closeWalletConnect}
-        isOpen={walletConnect}
-      /> */}
     </>
   );
 }
