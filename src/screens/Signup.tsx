@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import React from "react";
+import Loader from "../components/Loader";
 export const Signup = () => {
   const { values, handleChange, handleSubmit, handleBlur, setFieldValue } =
     useFormik({
@@ -37,11 +39,13 @@ export const Signup = () => {
         );
       }
     };
+    const [showLoader, setShowLoader] = React.useState(false);
     const handleSignup = async () => {
       if (!values.email || !values.password || !values.otp){
         return toast.error("Please fill all the fields");
       }
       try {
+        setShowLoader(true)
         const { data, status } = await axios.post(
           `${process.env.VITE_SERVER_URL}/users`,
           {
@@ -62,9 +66,15 @@ export const Signup = () => {
           (error as any).response.data.message || (error as any).message
         );
       } 
+      finally {
+        setShowLoader(false);
+      }
       }
   return (
     <div className="bg-[#070709] relative rounded-none">
+      {
+        showLoader && <Loader />
+      }
       <section className="z-10">
         <div className="flex  flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a

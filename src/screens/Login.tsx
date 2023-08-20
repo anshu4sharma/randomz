@@ -2,9 +2,12 @@ import axios from "axios";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
+import React from "react";
+import Loader from "../components/Loader";
 export const Login = () => {
+  const [showLoader, setShowLoader] = React.useState(false);
   const TryLogin = async () => {
+    setShowLoader(true);
     try {
       const { status, data } = await axios.post(
         `${process.env.VITE_SERVER_URL}/users/login`,
@@ -24,6 +27,7 @@ export const Login = () => {
         (error as any).response.data.message || (error as any).message
       );
     } finally {
+      setShowLoader(false);
       handleReset(null);
     }
   };
@@ -40,6 +44,9 @@ export const Login = () => {
     });
   return (
     <div className="bg-[#070709] relative h-screen m-0 p-0 rounded-none">
+      {
+        showLoader && <Loader />
+      }
       <section className="z-10">
         <div className="flex  flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
