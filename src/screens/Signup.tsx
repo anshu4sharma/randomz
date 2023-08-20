@@ -21,6 +21,7 @@ export const Signup = () => {
     });
     const sendEmail = async () => {
       try {
+        setShowLoader(true)
         const { data, status } = await axios.post(
           `${process.env.VITE_SERVER_URL}/users/sendemail`,
           {
@@ -37,6 +38,9 @@ export const Signup = () => {
         toast.error(
           (error as any).response.data.message || (error as any).message
         );
+      }
+      finally {
+        setShowLoader(false);
       }
     };
     const [showLoader, setShowLoader] = React.useState(false);
