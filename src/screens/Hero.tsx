@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 const Hero = () => {
   return (
@@ -22,7 +23,8 @@ const Hero = () => {
           Buy our decetralized token in private sale soon
         </p>
         <div className="flex gap-4 w-full mt-6 md:max-w-sm">
-          <button
+          <Link
+            to="/signup"
             className="leading-4 justify-center flex items-center mt-4 p-3 text-center rounded-md bg-[#C0317C]  text-white font-bold w-full "
           >
             Sign up
@@ -31,7 +33,7 @@ const Hero = () => {
                 <path d="M1.02535 9.1599L0.967858 7.07387L15.9382 6.62193L11.1459 1.88773L12.5187 0.365594L19.7908 7.54951L12.9265 15.1602L11.4721 13.7234L15.9956 8.70797L1.02535 9.1599Z" fill="white" />
               </svg>
             </span>
-          </button>
+          </Link>
           <button
             className="leading-4 justify-center flex items-center mt-4 p-3 text-center rounded-md bg-[#C0317C]  text-white font-bold w-full"
           >
