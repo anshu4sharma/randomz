@@ -195,7 +195,6 @@ export const Signup = () => {
                     value={values.referedBy}
                     onBlur={handleBlur}
                     id="referedBy"
-                    required
                     className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   />
                 </div>
