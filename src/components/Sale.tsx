@@ -4,21 +4,13 @@ import axios from "axios";
 import TransactionTable from "./TransactionTable";
 import SaleNavbar from "./SaleNavbar";
 import Purchase from "./Purchase";
+import { useFormik } from "formik";
+import toast from "react-hot-toast";
 const Sale = () => {
   const [show, setShow] = useState(false);
   const [leftTokens, setLeftTokens] = useState(0);
-  useEffect(() => {
-    (async () => {
-      let { data } = await axios.get(
-        "https://eon.onrender.com/api/transactions/getall"
-      );
-      if (data.data.length === 0) {
-        return setLeftTokens(0);
-      }
-      let total = data.data[0].totalAmount;
-      setLeftTokens(total);
-    })();
-  }, []);
+  const [userAllocation, setUserAllocation] = useState(0);
+  const [referalLink] = useState("https://randomz.com/E620001");
   const [showTransactionModal, setShowTransactionModal] = useState(false);
   const closeModal = () => {
     setShowTransactionModal(false);
@@ -26,19 +18,109 @@ const Sale = () => {
   const openWalletConnect = () => {
     setShowTransactionModal(true);
   };
+  const { values, handleBlur, handleChange, handleSubmit, handleReset } =
+    useFormik({
+      initialValues: {
+        BNB: "",
+      },
+      onSubmit: () => {
+        handle_purchase();
+      },
+    });
+
+  const fetchUserAllocation = async () => {
+    try {
+      const { data, status } = await axios.get(
+        `${process.env.VITE_SERVER_URL}/users/gettotal`,
+        {
+          headers: {
+            "auth-token": JSON.parse((localStorage as any).getItem("token")),
+          },
+        }
+      );
+      if (status === 200) {
+        return setUserAllocation(data.total.toFixed());
+      } else {
+        setUserAllocation(0);
+      }
+    } catch (error) {
+      if ((error as any).response.status == 404) {
+        localStorage.removeItem("token");
+        return (window.location.href = "/login");
+      }
+    }
+  };
+
+  const purchaseRequest = async () => {
+    try {
+      const { status } = await axios.post(
+        `${process.env.VITE_SERVER_URL}/users/addTransaction`,
+        {
+          txid: "asdasd12312321s",
+          account: "0asdsad213213",
+          amount: (values as any)?.BNB * 216.65 * 100,
+        },
+        {
+          headers: {
+            "auth-token": JSON.parse((localStorage as any).getItem("token")),
+          },
+        }
+      );
+      if (status == 200) {
+        handleReset(null);
+        openWalletConnect();
+        fetchUserAllocation();
+        fetchLeftTokens();
+        return toast.success("Transaction successful");
+      }
+    } catch (error) {
+      toast.error("Transaction failed");
+    }
+  };
+  const handle_purchase = async () => {
+    // if ((values as any)?.BNB * 216.65 * 100 < 10000) {
+    //   return toast.error("Minimum purchase amount is 10000 RDZ");
+    // }
+    // if ((values as any)?.BNB * 216.65 * 100 > 50000) {
+    //   return toast.error("Maximum purchase amount is 50000 RDZ");
+    // } else {
+      // }
+      purchaseRequest();
+  };
+  const fetchLeftTokens = async () => {
+    const { data, status } = await axios.get(
+      `${process.env.VITE_SERVER_URL}/users/getallamount`,
+      {
+        headers: {
+          "auth-token": JSON.parse((localStorage as any).getItem("token")),
+        },
+      }
+    );
+    if (status === 200) {
+      return setLeftTokens(data.total.toFixed());
+    } else {
+      setLeftTokens(0);
+    }
+  };
+  useEffect(() => {
+    Promise.allSettled([fetchUserAllocation(), fetchLeftTokens()]);
+  }, []);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(referalLink);
+    toast.success("Copied to clipboard");
+  };
   return (
     <div className="grid bg-[#070709] relative grid-cols-1 items-center md:flex md:flex-col justify-center p-4  gap-4">
       <SaleNavbar />
       <Presale />
       <div className="z-10 flex  items-end gap-4 flex-col md:flex-row w-full max-w-3xl justify-center md:justify-around">
-         <div className=" flex flex-col gap-3 md:p-4 w-full">
+        <div className=" flex flex-col gap-3 md:p-4 w-full">
           <div className="flex w-full justify-between text-sm items-center text-left rounded-lg shadow-orange-50 bg-opacity-20 backdrop-blur-sm  salecard p-4  gap-2">
             <p className="text-white  text-left  font-semibold break-all">
               Your allocation
             </p>
             <div className="flex gap-4 items-center text-white">
-              {/* {allocationAmount > 0 ? <span>{allocationAmount}</span> : 0} */}
-              0
+              {userAllocation}
               <img src="/assets/logo.svg" width={25} height={10} />
             </div>
           </div>
@@ -62,22 +144,22 @@ const Sale = () => {
             </div>
             <div className="flex flex-col text-left gap-4 my-4">
               <p className="text-white  font-medium text-sm">
-                Token Total Supply: 10,000,000
+                Token Total Supply: 100,000,000
               </p>
               <p className="text-white  font-medium text-sm">
-                Presale Allocation: 1,000,000 (10%)
+                Presale Allocation: 10,000,000 (10%)
               </p>
               <p className="text-white  font-medium text-sm">
-                Presale Hardcap: 1,00,000 BNB
+                Presale Hardcap: 30 BNB
               </p>
               <p className="text-white  font-medium text-sm">
-                Token Price: 1 BNB = 10 RDZ
+                Token Price: 1 RDZ = 0.005 BNB
               </p>
               <p className="text-white  font-medium text-sm">
-                Minumum Buy: 1000 BNB
+                Minumum Buy: 10000 RDZ
               </p>
               <p className="text-white  font-medium text-sm">
-                Maximum Buy: 5000 BNB
+                Maximum Buy: 50000 RDZ
               </p>
               <p className="text-white  font-medium text-sm">
                 Softcap: 50,000 BNB
@@ -89,15 +171,15 @@ const Sale = () => {
             <div className="flex w-full flex-col">
               <div className="flex justify-between w-full">
                 <p className="text-white text-sm font-medium">
-                  {leftTokens ? leftTokens / 10 : 0} BNB
+                  {leftTokens ? leftTokens : 0} RDZ
                 </p>
-                <p className="text-white text-sm font-medium">1,00,000 BNB</p>
+                <p className="text-white text-sm font-medium">2,00,000 RDZ</p>
               </div>
               <div className="w-full rounded-full h-2.5 bg-gray-700">
                 <div
                   className="bg-[#14BE81] h-2.5 rounded-full"
                   style={{
-                    width: `${(leftTokens / 1e6) * 100}%`,
+                    width: `${(leftTokens / 2e5) * 100}%`,
                   }}
                 ></div>
               </div>
@@ -107,19 +189,25 @@ const Sale = () => {
         <div className="flex flex-col items-center w-full gap-4 justify-center">
           <div className="flex w-full flex-col md:flex-row justify-between  text-sm items-center text-left rounded-lg shadow-orange-50 bg-opacity-20 backdrop-blur-sm  salecard  gap-2 ">
             <p className="text-white text-sm text-left p-4   font-normal ">
-              https://randomz.com/E620001
+              {referalLink}
             </p>
-            <button className="flex text-center justify-center  bg-[#EE3C99] rounded h-full p-4 font-bold  w-full gap-4 items-center text-white">
+            <button
+              onClick={copyToClipboard}
+              className="flex text-center justify-center  bg-[#EE3C99] rounded h-full p-4 font-bold  w-full gap-4 items-center text-white"
+            >
               Copy Link
             </button>
           </div>{" "}
-          <div className="flex w-full  flex-col rounded-lg shadow-orange-50  items-start text-center  bg-opacity-20 backdrop-blur-sm salecard p-6 m-5  md:p-8 gap-2">
+          <form
+            onSubmit={handleSubmit}
+            className="flex w-full  flex-col rounded-lg shadow-orange-50  items-start text-center  bg-opacity-20 backdrop-blur-sm salecard p-6 m-5  md:p-8 gap-2"
+          >
             <h1 className="text-xl font-black tracking-wider my-2 text-[#EE3C99]">
               Buy RDZ tokens
             </h1>
             <h1 className="text-white text-sm my-2">
               {/* Available BNB Balance : {!!balance ? balance : 0} BNB */}
-              Available BNB Balance : 11 BNB
+              Available BNB Balance : 0 BNB
             </h1>
             {show ? (
               <div className="flex w-full  bg-[#172042] rounded-md salecard">
@@ -128,7 +216,7 @@ const Sale = () => {
                   name="RDZ"
                   autoComplete="off"
                   disabled
-                  // value={lovelaceToSend * 10}
+                  value={(values as any)?.BNB * 216.65 * 100}
                   placeholder="You will get"
                   className="bg-[#172042] outline-none placeholder:text-sm placeholder:text-white no-spinners placeholder-shown:text-white text-white p-3 md:p-4 w-full"
                 />
@@ -151,8 +239,9 @@ const Sale = () => {
                 <input
                   type="number"
                   name="BNB"
-                  min={1}
-                  // value={lovelaceToSend}
+                  value={values.BNB}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   autoComplete="off"
                   placeholder="Enter amount in BNB here"
                   className={
@@ -195,7 +284,7 @@ const Sale = () => {
                   disabled
                   name="RDZ"
                   autoComplete="off"
-                  // value={lovelaceToSend * 10}
+                  value={(values as any)?.BNB * 216.65 * 100}
                   placeholder="You will get"
                   className="bg-[#172042] outline-none placeholder:text-sm placeholder:text-white no-spinners placeholder-shown:text-white text-white p-3 md:p-4 w-full"
                 />
@@ -218,7 +307,9 @@ const Sale = () => {
                 <input
                   type="number"
                   name="BNB"
-                  // value={lovelaceToSend}
+                  value={values.BNB}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   autoComplete="off"
                   placeholder="Enter amount in BNB here"
                   className={
@@ -239,13 +330,10 @@ const Sale = () => {
                 </div>
               </div>
             )}
-            {false ? (
+            {true ? (
               <button
-                type="button" 
-                placeholder="Timer"   onClick={() => {
-                  console.log("open wallet connect");
-                  openWalletConnect();
-                }}
+                type="submit"
+                placeholder="Timer"
                 className="bg-[#EE3C99] disabled:cursor-not-allowed flex items-center gap-4 justify-center my-4 buy p-3 md:p-4 w-full text-white rounded-md text-sm "
               >
                 Click to purchase
@@ -275,24 +363,26 @@ const Sale = () => {
                 Connect Wallet
               </button>
             )}
-          </div>
+          </form>
+          {/*  */}
         </div>
-      </div>  <div
-          className="absolute inset-0 md:translate-x-full"
-          style={{
-            content: "",
-            position: "absolute",
-            zIndex: "0",
-            top: 0,
-            right: 0,
-            width: "50%",
-            height: "100%",
-            borderRadius: "900px",
-            background:
-              "linear-gradient(180deg, rgba(167, 36, 104, 0.80) 0%, rgba(14, 37, 157, 0.80) 100%)",
-            filter: "blur(250px)",
-          }}
-        ></div>  
+      </div>{" "}
+      <div
+        className="absolute inset-0 md:translate-x-full"
+        style={{
+          content: "",
+          position: "absolute",
+          zIndex: "0",
+          top: 0,
+          right: 0,
+          width: "50%",
+          height: "100%",
+          borderRadius: "900px",
+          background:
+            "linear-gradient(180deg, rgba(167, 36, 104, 0.80) 0%, rgba(14, 37, 157, 0.80) 100%)",
+          filter: "blur(250px)",
+        }}
+      ></div>
       <TransactionTable />
       <Purchase isOpen={showTransactionModal} closeModal={closeModal} />
     </div>

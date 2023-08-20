@@ -10,7 +10,7 @@ export const Signup = () => {
         email: "",
         password: "",
         otp: "",
-        referalId: "",
+        referedBy: "",
       },
       onSubmit: (values) => {
         console.log(values);
@@ -38,8 +38,7 @@ export const Signup = () => {
       }
     };
     const handleSignup = async () => {
-      if (!values.email || !values.password || !values.otp  || 
-        !values.referalId){
+      if (!values.email || !values.password || !values.otp){
         return toast.error("Please fill all the fields");
       }
       try {
@@ -49,7 +48,7 @@ export const Signup = () => {
             email: values.email,
             password: values.password,
             otp: values.otp,
-            referalId: values.referalId,
+            referedBy: values.referedBy,
           }
         );
         console.log(data);
@@ -184,18 +183,18 @@ export const Signup = () => {
                 </div>
                 <div>
                   <label
-                    htmlFor="referalId"
+                    htmlFor="referedBy"
                     className="block mb-2 text-sm font-medium text-white"
                   >
                     Enter referral code here
                   </label>
                   <input
                     type="text"
-                    name="referalId"
+                    name="referedBy"
                     onChange={handleChange}
-                    value={values.referalId}
+                    value={values.referedBy}
                     onBlur={handleBlur}
-                    id="referalId"
+                    id="referedBy"
                     required
                     className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   />
