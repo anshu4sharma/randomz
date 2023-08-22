@@ -46,7 +46,7 @@ const TopCrypto = () => {
     const { data, isLoading } = useQuery("coins", parallelRequest);
     return (
         <>
-            <div data-aos="fade-up" className="md:p-16 p-2 md:hidden cointable">
+            <div data-aos="fade-up" className="md:p-16 p-2 md:hidden cointable overflow-hidden">
                 <div className="">
                     <div className="flex relative rounded-3xl topcrypto overflow-x-scroll max-w-xs mt-4 justify-around flex-col md:flex-wrap md:flex-row">
                         <table className="w-full md:m-4 font-semibold text-sm text-left text-gray-500 ">

@@ -1,7 +1,7 @@
 
 const MostTrusted = () => {
     return (
-        <div className="bg_gradient grid gap-10 grid-cols-1 sm:grid-cols-1  md:grid-cols-2 p-8 md:p-20 justify-center items-center">
+        <div className="bg_gradient overflow-hidden grid gap-10 grid-cols-1 sm:grid-cols-1  md:grid-cols-2 p-8 md:p-20 justify-center items-center">
             <div className="flex gap-4 h-full w-full justify-end items-center order-2 md:order-none">
                 <div  data-aos="fade-left"
            className="card p-14 md:min-h-[340px] md:max-w-xs w-full  flex flex-col text-white gap-4">
