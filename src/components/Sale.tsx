@@ -179,7 +179,8 @@ const Sale = () => {
                 <div
                   className="bg-[#14BE81] h-2.5 rounded-full"
                   style={{
-                    width: `${(leftTokens / 2e5) * 100}%`,
+                    width: `${(leftTokens  / 2e5) * 100}%`,
+                    maxWidth: "100%",
                   }}
                 ></div>
               </div>
